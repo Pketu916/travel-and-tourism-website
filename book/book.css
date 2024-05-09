@@ -1,0 +1,140 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#frm {
+    border: solid rgb(0 0 0) 3.5px;
+    width: 35%;
+    border-radius: 50px;
+    margin: 3% auto;
+    background: white;
+    padding: 20px 40px;
+}
+
+select#package {
+    height: 34px;
+    width: 35%;
+    display: inline-block;
+    border: none;
+}
+
+h1 {
+    height: 50px;
+    text-align: center;
+    font-size: 45px;
+    margin: 2% 0px 4% 0px;
+    color: rgb(213, 117, 0);
+}
+
+p {
+    /* padding: 0% 0% 0% 15%; */
+    border: none;
+    /* width: 75%; */
+}
+
+.new {
+    padding: 15px 0px;
+}
+
+.place {
+    width: 45%;
+    border-radius: 5px;
+    border: 2px solid black;
+    color: rgb(0 0 0);
+}
+
+.a {
+    /* padding: 0px 0px 0px 15%; */
+    /* margin: 5px 0 22px 0; */
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+select#adults {
+    height: 34px;
+    width: 40px;
+    /* display: inline-block; */
+    border: none
+}
+
+.c {
+    /* padding: 0px 0px 0px 2%; */
+    /* margin: 5px 0 22px 0; */
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+select#children {
+    height: 34px;
+    width: 40px;
+    /* display: inline-block; */
+    border: none
+}
+
+input[type=name],
+input[type=tel],
+input[type=email],
+input[type=text] {
+    width: 70%;
+    padding: 15px;
+    /* margin: 5px 0 22px 0; */
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=name]:focus,
+input[type=tel]:focus,
+input[type=email]:focus,
+select[id=adults]:focus,
+select[id=children]:focus,
+input[id=package]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+
+/* #btn {
+    background-color: #d57500;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+} */
+
+#btn {
+    color: #fff;
+    background: #ff701e;
+    padding: 7px 34px;
+    /* border: solid 2px rgb(213, 117, 0); */
+    border-radius: 10px;
+    font-size: 20px;
+    margin: 15px 0px;
+    width: 100%;
+    cursor: pointer;
+    border: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.send {
+    margin: 0px;
+    padding: 0px;
+}
+
+.note {
+    color: red;
+}
+
+#totalCost {
+    color: red;
+}

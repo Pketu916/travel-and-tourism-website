@@ -1,0 +1,490 @@
+<!-- <?php
+session_start();
+if (isset($_SESSION['name'])) {
+  $name = '<li class= "name "> ' . ($_SESSION['name']) . '</li>';
+  $logout = '<li class="login"><form  action="loginpage/logout.php" method="post"><input type="submit" value="Logout" ></form></li>';
+  $book = '<li type="button" class="login" data-toggle="modal" data-target="#bookModal">
+      BOOK NOW
+  </li>';
+} else {
+  $login = '<li type="button" class="login" data-toggle="modal" data-target="#loginModal">
+  Login
+</li>';
+  $register = '<li type="button" class="login" data-toggle="modal" data-target="#registerModal">
+    Sign Up
+  </li>';
+  $book = '<li type="button" class="login" data-toggle="modal" data-target="#bookModal">
+      BOOK NOW
+  </li>';
+}
+?>
+    <?php
+$host = "localhost";
+$user = "root";
+$password = '';
+$db_name = "book";
+
+$con = mysqli_connect($host, $user, $password, $db_name);
+if (mysqli_connect_errno()) {
+  die("Failed to connect with MySQL: " . mysqli_connect_error());
+}
+?> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <title>travel and tourism</title>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="js/resp.js"></script>
+    <nav class="background navbar h-nav-resp">
+        <ul class="nav-list v-class-resp">
+            <div class="logo"><img src="img/logo.png" alt="logo"></div>
+            <li><a href="#">Home</a></li>
+            <li><a href="#bn">Destinations</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="#aboutus">About Us</a></li>
+            <li type="button" class="login" data-toggle="modal" data-target="#loginModal">
+                Login
+            </li>
+            <li type="button" class="login" data-toggle="modal" data-target="#registerModal">
+                Sign Up
+            </li>
+            <li>
+                <!-- <?php if (isset($logout)) {
+            echo $logout;
+            echo $name;
+          } elseif (isset($login)) {
+            echo $login;
+            echo $register;
+          } ?> -->
+            </li>
+        </ul>
+        <div class="rightNav v-class-resp">
+            <!-- <input type="text" name="search" id="search">
+            <button class="btn btn-sm">Search</button> -->
+        </div>
+        <div class="burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </nav>
+    <section class="background firstSection">
+        <div class="box-main">
+            <div class="firstHalf">
+                <p class="text-big">Incredible India! </p>
+                <p class="text-small">
+                    You'll fall in love with India! Explore India from Kashmir to Kaniyakumari
+                </p>
+                <div class="buttons">
+                    <!-- <button class="btn "><a href="<?php echo $book ?></a></button> -->
+                    <button class=" btn"><a href="#bn">DESTINATIONS</a></button>
+                    <button class="btn"><li type="button" class="login" data-toggle="modal" data-target="#bookModal">
+                      BOOK NOW
+                  </li></button>
+                </div>
+            </div>
+
+            <div class="secondHalf">
+                <img src="img/logo.png" alt="Image">
+            </div>
+        </div>
+    </section>
+    <!--<section>
+        <div class="bkn" id="bn">Destinations</div>
+
+        <div class="single-portfolio ">
+
+             <?php
+      for ($k = 0; $k <= 20; $k++) {
+        $sql = "SELECT * FROM destination WHERE id = ?";
+        $stmt = mysqli_prepare($con, $sql);
+        mysqli_stmt_bind_param($stmt, "s", $k);
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+        $rt = mysqli_fetch_array($result);
+
+        if ($rt) {
+          $image_k = $rt['image'];
+          $base64Image_k = 'data:image/jpg;base64,' . base64_encode($image_k);
+          $destination_k = $rt['destination'];
+          $state_k = $rt['state'];
+
+          echo '<div class="p-inner">';
+          echo '<a href="./Pages-inside/pageinsider.php?id=' . $k . '"><img class="img-fluid" src="' . $base64Image_k . '" alt="Image"></a>';
+          echo '<h4><a href="./Pages-inside/pageinsider.php?id=' . $k . '">' . $destination_k . '</a></h4>';
+          echo '<div class="cat">' . $state_k . '</div>';
+          // echo "<button type='button' class='btn btn-primary btn-lg btn-block'>$book</button>"; // Button for booking without selecting a specific place
+          echo "<button type='button' class='btn btn-primary btn-lg btn-block' data-toggle='modal' data-target='#bookModal' onclick=\"selectPlace($k)\">$book</button>"; // Button for booking with Lakshadweep pre-selected
+          echo '</div>';
+        }
+        mysqli_stmt_close($stmt);
+      }
+      ?>
+        </div>
+        </div>
+    </section>
+    </section>-->
+    <section>
+        <div class="bkn" id="bn">Destinations</div>
+        <div class="single-portfolio">
+
+            <div class="p-inner">
+                <a href="/Pages-inside/Ayodhya Ram Mandir.html"><img class="img-fluid" src="img/ayodhya ram mandir.webp" alt="Ayodhya Ram Mandir"></a>
+                <h4><a href="/Pages-inside/Ayodhya Ram Mandir.html">Ayodhya Ram Mandir</a></h4>
+                <div class="cat">Uttar Pradesh</div>
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#bookModal">Book</button>
+            </div>
+
+            <div class="p-inner">
+                <a href="/Pages-inside/Statue of unity.html"><img class="img-fluid" src="img/statue_of_unity.jpg" alt="Statue of Unity"></a>
+                <h4><a href="./Pages-inside/Statue of unity.html">Statue of Unity</a></h4>
+                <div class="cat">Gujarat</div>
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#bookModal">Book</button>
+            </div>
+
+            <div class="p-inner">
+                <a href="./Pages-inside/rani_ka_vav.html"><img class="img-fluid" src="img/rani ki vav.jpg" alt="Rani Ka Vav"></a>
+                <h4><a href="./Pages-inside/rani_ka_vav.html">Rani Ka Vav</a></h4>
+                <div class="cat">Gujarat</div>
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#bookModal">Book</button>
+            </div>
+
+            <!-- Repeat the above structure for each destination -->
+            <!-- Example -->
+
+            <div class="p-inner">
+                <a href="./Pages-inside/kachchh.html"><img class="img-fluid" src="img/kachchh.jpeg" alt="kachchh"></a>
+                <h4><a href="./Pages-inside/kachchh.html">kachchh</a></h4>
+                <div class="cat">Gujarat</div>
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#bookModal">Book</button>
+            </div>
+
+            <div class="p-inner">
+                <a href="./Pages-inside/red_fort.html"><img class="img-fluid" src="img/red fort.jpg" alt="Red Fort"></a>
+                <h4><a href="./Pages-inside/red_fort.html">Red Fort</a></h4>
+                <div class="cat">Delhi</div>
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#bookModal">Book</button>
+            </div>
+
+            <div class="p-inner">
+                <a href="./Pages-inside/golden_temple.html"><img class="img-fluid" src="img/golden temple.jpg" alt="Golden Temple"></a>
+                <h4><a href="./Pages-inside/golden_temple.html">Golden Temple</a></h4>
+                <div class="cat">Punjab</div>
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#bookModal">Book</button>
+            </div>
+
+            <div class="p-inner">
+                <a href="./Pages-inside/nahargarh_fort.html"><img class="img-fluid" src="img/nahargarh fort.jpg" alt="Nahargarh Fort"></a>
+                <h4><a href="./Pages-inside/nahargarh_fort.html">Nahargarh Fort</a></h4>
+                <div class="cat">Rajasthan</div>
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#bookModal">Book</button>
+            </div>
+
+            <div class="p-inner">
+                <a href="./Pages-inside/shimla_manali.html"><img class="img-fluid" src="img/shimla manali.jpg" alt="Shimla Manali"></a>
+                <h4><a href="./Pages-inside/shimla_manali.html">Shimla Manali</a></h4>
+                <div class="cat">Himachal Pradesh</div>
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#bookModal">Book</button>
+            </div>
+
+
+        </div>
+
+    </section>
+    <section class="contact" id="contact">
+        <h1 class="text-center">Contact Us</h1>
+        <form class="form" name="contactus" action="contactus.php" method="post">
+            <input class="form-input" type="text" name="name" id="name" placeholder="Enter Your name" required>
+            <input class="form-input" type="text" name="phone" id="phone" placeholder="Enter Your Phone" required>
+            <input class="form-input" type="email" name="email" id="email" placeholder="Enter Your email" required>
+            <textarea class="form-input" name="text" id="text" cols="30" rows="6" placeholder="Ellaborate your concern" require></textarea>
+            <button class=" btn btn-primary btn-lg btn-block" type="submit" id="submit">Submit</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <div class="about">
+            <section class="aboutus" id="aboutus">
+                <h3 class="abouth3">About Us</h3>
+                <p class="p1">Welcome to our travel and tourism website!</p>
+                <p class="aboutp">Where we're passionate about travel and creating unforgettable experiences. Our team of experts curates diverse travel options, ensuring personalized adventures for every traveler. From seamless bookings to expert guidance, we're here
+                    to make your journey stress-free. Join our community of adventurers and let's explore the world together. Your next adventure starts here at travel and tourism.</p>
+                <p class="p1">Join Us on This Journey</p>
+                <p class="aboutp">Whether you're a seasoned globetrotter or embarking on your first adventure, we invite you to join us on this journey of discovery and exploration. Let's create unforgettable memories together!
+                    <br>For inquiries or bookings, contact us at<a class="aboutp" href="mailto:travelandtourism@gmail.com">travelandtourism@gmail.com</a></p>
+
+            </section>
+            <div class="secondHalf2">
+                <img src="img/logo.png" alt="Image">
+            </div>
+        </div>
+        <hr>
+        <p class="text-footer">
+            www.travel&tourism.com - All rights reserved
+        </p>
+    </footer>
+
+    <!--Book Modal -->
+    <div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria-labelledby="bookModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title" id="bookModalLabel">Login</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+                </div>
+                <div class="modal-body">
+                    <div id="frm">
+                        <form name="form" action="book/bookaction.php" onsubmit="return submitForm()" method="POST">
+                            <p>
+                                <select class="place" id="place" name="place" onchange="updatePrice()" required>
+                                  <option id="0" value="Ayodhya Ram Mandir">Ayodhya Ram Mandir</option>
+                                  <option id="2" value="Statue of Unity">Statue of Unity</option>
+                                  <option id="3" value="Rani Ka Vav">Rani Ka Vav</option>
+                                  <option id="4" value="Kachchh">Kachchh</option>
+                                  <option id="5" value="Red Fort">Red Fort</option>
+                                  <option id="6" value="Golden Temple">Golden Temple</option>
+                                  <option id="7" value="Nahargarh Fort">Nahargarh Fort</option>
+                                  <option id="8" value="Shimla Manali">Shimla Manali</option>
+                                  
+                  </select>
+                            </p>
+                            <p>
+                                <label for="package">Package Price:</label>
+                                <input type="text" id="package" name="package" readonly>
+                            </p>
+                            <p>
+                                <label> Name </label>
+                                <input type="name" placeholder="Enter your name" id="name" name="name" required />
+                            </p>
+                            <p class="abook">
+                                <label for="adults">Adults:</label>
+                                <select id="adults" name="adults" onchange="updatePrice()" required>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5">5</option>
+                                  <option value="6">6</option>
+                                  <option value="7">7</option>
+                                  <option value="8">8</option>
+                                  <option value="9">9</option>
+                                  <option value="10">10</option>
+                              </select>
+                                <!-- <select id="adults" name="adults" onchange="updatePrice()" required>
+                                <?php for ($i = 1; $i <= 10; $i++) : ?>
+                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                <?php endfor; ?>
+                              </select> -->
+                            </p>
+                            <p class="cbook">
+                                <label for="children">Children:</label>
+                                <select id="children" name="children" onchange="updatePrice()" required>
+                                  <option value="0">0</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5">5</option>
+                                  <option value="6">6</option>
+                                  <option value="7">7</option>
+                                  <option value="8">8</option>
+                                  <option value="9">9</option>
+                                  <option value="10">10</option>
+                              </select>
+
+                                <!-- <select id="children" name="children" onchange="updatePrice()" required>
+                    <?php for ($i = 0; $i <= 10; $i++) : ?>
+                      <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                    <?php endfor; ?>
+                  </select> -->
+                            </p>
+                            <p class="note">Note: Adult tickets are full price, and child tickets (age &lt; 12) are half price.</p>
+                            <p class="new">Total Cost: <span id="totalCost" name="totalCost">0</span>
+                                <input type="hidden" id="totalCostInput" name="totalCost" value="0">
+                            </p>
+                            <p>
+                                <label>Number</label>
+                                <input type="tel" placeholder="Enter 10-digit number" id="contact_num" name="contact_num" required />
+                            </p>
+                            <p>
+                                <label for="email"> Email: </label>
+                                <input type="email" placeholder="Enter Your email" id="email" name="email" required />
+                            </p>
+                            <p>
+                                <textarea class="place form-input" name="your_query" id="your_query" cols="30" rows="5" placeholder="Enter Your Query"></textarea>
+                            </p>
+                            <p class="send">
+                                <input type="submit" id="btn" value="Send enquiry" />
+                            </p>
+                        </form>
+                        <script>
+                            function submitForm() {
+                                var contact_num = document.form.contact_num.value;
+                                if (contact_num.length !== 10) {
+                                    alert("Please enter a valid 10-digit phone number");
+                                    return false;
+                                } else {
+                                    alert("Your enquiry is sent successfully");
+                                    alert("Our team will contact you within 12 hours for confirmation");
+                                    return true;
+                                }
+                            }
+
+                            function updatePrice() {
+                                var placeSelect = document.getElementById("place");
+                                var packageInput = document.getElementById("package");
+                                var adultsSelect = document.getElementById("adults");
+                                var childrenSelect = document.getElementById("children");
+                                var totalCostSpan = document.getElementById("totalCost");
+
+                                var selectedPlacePrice = 0;
+
+                                if (placeSelect.value === "Ayodhya Ram Mandir") {
+                                    selectedPlacePrice = 8000;
+                                } else if (placeSelect.value === "Statue of Unity") {
+                                    selectedPlacePrice = 6000;
+                                } else if (placeSelect.value === "Rani Ka Vav") {
+                                    selectedPlacePrice = 7000;
+                                } else if (placeSelect.value === "Kachchh") {
+                                    selectedPlacePrice = 8500;
+                                } else if (placeSelect.value === "Red Fort") {
+                                    selectedPlacePrice = 9500;
+                                } else if (placeSelect.value === "Golden Temple") {
+                                    selectedPlacePrice = 10000;
+                                } else if (placeSelect.value === "Nahargarh Fort") {
+                                    selectedPlacePrice = 10500;
+                                } else if (placeSelect.value === "Shimla Manali") {
+                                    selectedPlacePrice = 19500;
+                                }
+
+
+                                var adultsCount = parseInt(adultsSelect.value);
+                                var childrenCount = parseInt(childrenSelect.value);
+
+                                var totalCost = adultsCount * selectedPlacePrice + childrenCount * (selectedPlacePrice / 2);
+
+                                packageInput.value = selectedPlacePrice;
+                                totalCostSpan.innerText = totalCost;
+                                document.getElementById("totalCostInput").value = totalCost;
+                            }
+
+                            // Call the function initially to set the default value
+                            updatePrice();
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function selectPlace(optionId) {
+            var placeSelect = document.getElementById('place');
+            var option = document.getElementById(optionId);
+            if (option) {
+                placeSelect.value = option.value;
+            }
+
+            // Trigger the change event manually to update the price
+            var event = new Event('change');
+            placeSelect.dispatchEvent(event);
+        }
+    </script>
+    <!--Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title" id="loginModalLabel">Login</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body">
+                    <div id="frm">
+                        <form name="f1" action="loginpage/authentication.php" method="POST">
+                            <p>
+                                <label for="email"> Email: </label>
+                                <input class="email" type="email" placeholder="Enter register email" id="email" name="email" require />
+                            </p>
+                            <p>
+                                <label> Password: </label>
+                                <input type="password" placeholder="Enter your password" id="psw" name="psw" require />
+                            </p>
+                            <p class="login">
+                                <input type="submit" id="btn" value="Login" />
+                            </p>
+                            <div class="signup">
+                                <!-- <p class="last">Don't Have An Account?
+                                    <a href="<?php echo $register ?></a></p> -->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title" id="registerModalLabel">Registration</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <div id="frm">
+                        <form name="f1" action="register/action_page.php" onsubmit="return validation()" method="post">
+                            <div class="container">
+
+                                <p class="title">Please fill in this form to create an account.</p>
+
+                                <p>
+                                    <label for="name"><b>Name</b></label>
+                                    <input class="name1" type="text" placeholder="Enter Your Name" name="name" id="name" required>
+                                </p>
+                                <p>
+                                    <label for="email"><b>Email</b></label>
+                                    <input class="email" type="email" placeholder="Enter Email" name="email" id="email" required>
+                                </p>
+                                <p>
+                                    <label for="psw"><b>Password</b></label>
+                                    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+                                </p>
+                                <p>
+                                    <label for="pswrepeat"><b>Repeat Password</b></label>
+                                    <input type="password" placeholder="Repeat Password" name="pswrepeat" id="pswrepeat" required>
+                                </p>
+                                <!-- <p class="last">By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p> -->
+                                <button type="submit" class="login" id="btn">Register</button>
+                                <!-- <p class="title">Already have an account? <a onclick="openLoginModal()" href="<?php echo $login ?>"></a>
+                                  </p> -->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

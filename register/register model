@@ -1,0 +1,78 @@
+<!-- Register Modal -->
+ <!--  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="registerModalLabel">Register</h1>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+ <?php
+// session_start();
+$massage = '';
+if (isset($_SESSION['email_alert'])) {
+  $massage = 'Email ID Already Exists';
+}
+?>
+
+  <div id="frm">
+    <form name="f1" action="register/action_page.php" onsubmit="return validation()" method="post">
+      <div class="container">
+        <h1 class="alert"><?php echo ("$massage") ?></h1>
+
+        <p class="title">Please fill in this form to create an account.</p>
+
+        <p>
+          <label for="name"><b>Name</b></label>
+          <input class="name1" type="text" placeholder="Enter Your Name" name="name" id="name" required>
+        </p>
+        <p>
+          <label for="email"><b>Email</b></label>
+          <input class="email" type="email" placeholder="Enter Email" name="email" id="email" required>
+        </p>
+        <p>
+          <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+        </p>
+        <p>
+          <label for="pswrepeat"><b>Repeat Password</b></label>
+          <input type="password" placeholder="Repeat Password" name="pswrepeat" id="pswrepeat" required>
+        </p>
+        <p class="last">By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+        <button type="submit" class="login" id="btn">Register</button>
+        <p class="title">Already have an account? <a onclick="openLoginModal()" href= "<?php echo $login?></a></p>
+      </div>
+    </form>
+  </div>
+  <script>
+    function validation() {
+      var psw = document.f1.psw.value;
+      var pswrepeat = document.f1.pswrepeat.value;
+      if (psw != pswrepeat) {
+        alert("Password Dos not Match");
+        
+      }
+}  
+    <!-- function openLoginModal() {
+        // Code to open the login modal
+        document.getElementById('loginModal').style.display = 'block';
+
+        // Code to close the register modal
+        document.getElementById('registerModal').style.display = 'none';
+    } -->
+    function closeLoginModal() {
+    // Code to close the login modal
+    document.getElementById('loginModal').style.display = 'none';
+
+    // Code to open the register modal
+    document.getElementById('registerModal').style.display = 'block';
+}
+
+</script>
+  <?php unset($_SESSION['email_alert']); ?>
+        </div>
+      </div>
+    </div>
+  </div> -->

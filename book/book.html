@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="book.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="frm">
+        <h1>Booking</h1>
+        <form name="form" action="bookaction.php" onsubmit="return submitForm()" method="POST">
+            <p>
+                <select class="place" id="place" name="place" onchange="updatePrice()" required>
+                    <!-- <option value="" disabled selected>Select Package</option> -->
+                    <option value="Ayodhya Ram Mandir">Ayodhya Ram Mandir</option>
+                    <option value="Statue of Unity">Statue of Unity</option>
+                    <option value="Lakshadweep">Lakshadweep</option>
+                    <!-- <option value="4">ghj</option>
+                    <option value="5">lkjh</option> -->
+                </select>
+            </p>
+            <p>
+                <label for="package">Package Price:</label>
+                <input type="text" id="package" name="package" readonly>
+            </p>
+            <p>
+                <label> Name </label>
+                <input type="name" placeholder="Enter your name" id="name" name="name" required />
+            </p>
+            <p class="a">
+                <label for="adults">Adults:</label>
+                <select id="adults" name="adults" onchange="updatePrice()" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </p>
+            <p class="c">
+                <label for="children">Children:</label>
+                <select id="children" name="children" onchange="updatePrice()" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </p>
+            <p class="note">Note: Adult tickets are full price, and child tickets (age
+                < 12) are half price.</p>
+                    <p class="new">Total Cost: <span id="totalCost" name="totalCost">0</span>
+                        <input type="hidden" id="totalCostInput" name="totalCost" value="0">
+                    </p>
+                    <p>
+                        <label>Number</label>
+                        <input type="tel" placeholder="Enter 10-digit number" id="contact_num" name="contact_num" required />
+                    </p>
+                    <p>
+                        <label for="email"> Email: </label>
+                        <input type="email" placeholder="Enter Your email" id="email" name="email" required />
+                    </p>
+                    <p>
+                        <textarea class="place form-input" name="your_query" id="your_query" cols="30" rows="5" placeholder="Enter Your Query"></textarea>
+                    </p>
+                    <p class="send">
+                        <input type="submit" id="btn" value="Send enquiry" />
+                    </p>
+
+        </form>
+        <script>
+            function submitForm() {
+                var contact_num = document.f1.contact_num.value;
+                if (contact_num.length == 10) {
+                    alert("Please enter a valid 10-digit phone number");
+                    return;
+                } else {
+                    alert("You are enquiry is sent successfully");
+                    alert("Our team will contact you within 12 hours for confirmation");
+                }
+
+            }
+        </script>
+        <script>
+            function updatePrice() {
+                var placeSelect = document.getElementById("place");
+                var packageInput = document.getElementById("package");
+                var adultsSelect = document.getElementById("adults");
+                var childrenSelect = document.getElementById("children");
+                var totalCostSpan = document.getElementById("totalCost");
+
+                var selectedPlacePrice = 0;
+
+                if (placeSelect.value === "Ayodhya Ram Mandir") {
+                    selectedPlacePrice = 8000;
+                } else if (placeSelect.value === "Statue of Unity") {
+                    selectedPlacePrice = 8500;
+                } else if (placeSelect.value === "Lakshadweep") {
+                    selectedPlacePrice = 9000;
+                }
+
+                var adultsCount = parseInt(adultsSelect.value);
+                var childrenCount = parseInt(childrenSelect.value);
+
+                var totalCost = (adultsCount * selectedPlacePrice) + (childrenCount * (selectedPlacePrice / 2));
+
+                packageInput.value = selectedPlacePrice;
+                totalCostSpan.innerText = totalCost;
+                document.getElementById("totalCostInput").value = totalCost;
+            }
+
+            // Call the function initially to set the default value
+            updatePrice();
+        </script>
+    </div>
+</body>
+
+</html>
