@@ -14,9 +14,6 @@
         flex-direction: column-reverse;
         max-width: 100%;
     }
-    #search {
-        width: 100%;
-    }
     .burger {
         display: block;
     }
@@ -25,6 +22,7 @@
     }
     .v-class-resp {
         opacity: 0;
+        display: none;
     }
     .section {
         flex-direction: column-reverse;
@@ -41,11 +39,12 @@
     .paras {
         padding: 0px;
     }
-    /* .background {
+    .background {
         background: rgba(0, 0, 0, 0.7) url(../img/header-bg.jpg);
         background-size: cover;
-        background-position: center;
-    } */
+        background-position: top;
+        /* background-position: center; */
+    }
     .nav-list {
         gap: 25px;
     }
