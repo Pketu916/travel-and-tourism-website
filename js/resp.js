@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const navbar = document.querySelector('.navbar');
     const navList = document.querySelector('.nav-list');
 
-  
     function toggleResponsiveClasses() {
         navList.classList.toggle('v-class-resp');
         navbar.classList.toggle('h-nav-resp');
@@ -15,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-   
     const navLinks = document.querySelectorAll('.nav-list li a');
     navLinks.forEach(link => {
         link.addEventListener('click', toggleResponsiveClasses);
