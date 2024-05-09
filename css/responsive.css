@@ -51,4 +51,10 @@
     .logo img {
         width: 120%;
     }
+    .nav-list li a {
+        color: black;
+    }
+    .re_login {
+        color: black;
+    }
 }
